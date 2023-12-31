@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="StyleTextInputLayout" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+        <item name="boxBackgroundMode">filled</item>
+        <item name="boxStrokeColor">@color/bg_secondary</item>
+        <item name="hintTextColor">@color/bg_secondary</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="StyleTextInputEditText" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/bg_primary</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+</resources>
