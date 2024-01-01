@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_primary"
     android:paddingTop="10dp"
-    tools:context=".SignupCaregiverActivity">
+    tools:context=".PetRegister">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="Caregiver Signup"
+                android:text="Tell us about the pet"
                 android:textColor="@color/text_primary"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -35,16 +35,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="Experience our best services today!"
+                android:paddingEnd="20dp"
+                android:text="Once you complete the sign in process, you'll have the opportunity to add and modify your pet's info"
                 android:textColor="@color/text_secondary"
                 android:textSize="15sp"
                 android:textStyle="normal" />
         </LinearLayout>
 
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbarSize="0dp">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,30 +61,86 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="20dp"
+                        android:text="What type of pet?"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/radiobtngroup_pet"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radiobtn_dog"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/style_radio_dog"
+                            android:button="@null" />
+
+                        <RadioButton
+                            android:id="@+id/radiobtn_cat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginLeft="25dp"
+                            android:background="@drawable/style_radio_cat"
+                            android:button="@null"
+                            android:checked="false" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="start"
+                        android:paddingLeft="10dp"
+                        android:paddingEnd="20dp"
+                        android:text="About your pet"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_fullname"
+                        android:id="@+id/edittext_name"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/StyleTextInputEditText"
-                            android:hint="Full Name" />
+                            android:hint="Name" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_address"
-                        style="@style/StyleTextInputLayout">
+                    <!--                    <com.google.android.material.textfield.TextInputLayout-->
+                    <!--                        android:id="@+id/edittext_address"-->
+                    <!--                        style="@style/StyleTextInputLayout">-->
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            style="@style/StyleTextInputEditText"
-                            android:hint="Address" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    <!--                        <com.google.android.material.textfield.TextInputEditText-->
+                    <!--                            style="@style/StyleTextInputEditText"-->
+                    <!--                            android:hint="Address" />-->
+                    <!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
                     <com.google.android.material.textfield.TextInputLayout style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edittext_date"
                             style="@style/StyleTextInputEditText"
-                            android:hint="Birthday"
+                            android:hint="Pet Birthday (approx. ok)"
                             android:inputType="date" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,13 +166,12 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_email"
+                        android:id="@+id/edittext_breed"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/StyleTextInputEditText"
-                            android:hint="Email"
-                            android:inputType="textEmailAddress" />
+                            android:hint="Breed" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -122,8 +180,7 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/StyleTextInputEditText"
-                            android:hint="Password"
-                            android:inputType="textPassword" />
+                            android:hint="Color" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -132,8 +189,9 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             style="@style/StyleTextInputEditText"
-                            android:hint="Confirm Password"
-                            android:inputType="textPassword" />
+                            android:layout_height="100dp"
+                            android:hint="Other Details"
+                            android:inputType="textMultiLine" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -145,29 +203,17 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/btn_toggle_signup"
+                        android:id="@+id/btn_finish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:backgroundTint="@color/bg_secondary"
-                        android:text="Next"
-                        android:textColor="@color/btn_txt_primary"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/btn_login"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:text="Login"
+                        android:text="Finish"
                         android:textColor="@color/btn_txt_primary"
                         android:textSize="15sp" />
 
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
-
-
 </LinearLayout>
