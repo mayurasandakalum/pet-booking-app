@@ -107,6 +107,15 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edittext_phone"
+                        style="@style/StyleTextInputLayout">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/StyleTextInputEditText"
+                            android:hint="Phone Number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/edittext_email"
                         style="@style/StyleTextInputLayout">
 
