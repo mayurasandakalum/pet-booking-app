@@ -5,6 +5,7 @@
     <color name="main_text">#FF99CC</color>
     <color name="bg_primary">#111111</color>
     <color name="bg_secondary">#AFEB30</color>
+    <color name="bg_search">#0deae9ea</color>
     <color name="text_primary">#EAE9EA</color>
     <color name="text_secondary">#80eae9ea</color>
     <color name="btn_txt_primary">#090808</color>
