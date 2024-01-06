@@ -46,8 +46,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -69,13 +69,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginLeft="20dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:background="@color/bg_search"
-                android:backgroundTint="@color/bg_search">
+                android:backgroundTint="@color/bg_search"
+                android:gravity="center">
 
                 <ImageButton
                     android:id="@+id/btn_search"
@@ -89,15 +89,131 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbarSize="0dp">
-
+            android:scrollbarSize="0dp"
+            android:paddingTop="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:orientation="vertical"
                 android:paddingBottom="50dp">
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:columnCount="2"
+                    android:useDefaultMargins="true">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="155dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="25dp"
+                        app:cardCornerRadius="20dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/dog1" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="155dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="25dp"
+                        app:cardCornerRadius="20dp"
+                        android:layout_gravity="end">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/dog2" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="155dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="25dp"
+                        app:cardCornerRadius="20dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/dog3" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="155dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="25dp"
+                        app:cardCornerRadius="20dp"
+                        android:layout_gravity="end">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/dog4" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="155dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="25dp"
+                        app:cardCornerRadius="20dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/cat1" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="155dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="25dp"
+                        app:cardCornerRadius="20dp"
+                        android:layout_gravity="end">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/cat4" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="155dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="25dp"
+                        app:cardCornerRadius="20dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/cat1" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="155dp"
+                        android:layout_height="180dp"
+                        android:layout_marginBottom="25dp"
+                        app:cardCornerRadius="20dp"
+                        android:layout_gravity="end">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/cat4" />
+                    </androidx.cardview.widget.CardView>
+
+
+                </GridLayout>
 
 
             </LinearLayout>
