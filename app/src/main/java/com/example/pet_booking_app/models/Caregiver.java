@@ -1,7 +1,6 @@
 package com.example.pet_booking_app.models;
 
-public class Customer {
-
+public class Caregiver {
     private int id;
     private String fullName;
     private String address;
@@ -11,79 +10,89 @@ public class Customer {
     private String email;
     private String password;
 
-    public Customer(String fullName, String address, String birthday, String gender, String phoneNumber, String email, String password) {
-        this.fullName = fullName;
-        this.address = address;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-    }
-
-    public Customer(int id, String fullName, String address, String birthday, String gender, String phoneNumber, String email, String password) {
+    public Caregiver(int id, String full_name, String address, String birthday, String gender, String phone_number, String email, String password) {
         this.id = id;
-        this.fullName = fullName;
+        this.fullName = full_name;
         this.address = address;
         this.birthday = birthday;
         this.gender = gender;
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = phone_number;
         this.email = email;
         this.password = password;
     }
 
+    public Caregiver(String full_name, String address, String birthday, String gender, String phone_number, String email, String password) {
+        this.fullName = full_name;
+        this.address = address;
+        this.birthday = birthday;
+        this.gender = gender;
+        this.phoneNumber = phone_number;
+        this.email = email;
+        this.password = password;
+    }
+
+    // getters
     public int getId() {
         return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFullName() {
         return fullName;
     }
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
 
     public String getAddress() {
         return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getBirthday() {
         return birthday;
     }
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
 
     public String getGender() {
         return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     public String getEmail() {
         return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
         return password;
     }
+
+    // setters
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }

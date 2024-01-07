@@ -76,43 +76,153 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public Boolean insertData(Users users) {
+    // signup customer
+    public boolean signupCustomer(Customer customer) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("username", users.getUsername());
-        values.put("password", users.getPassword());
-        values.put("name", users.getName());
-        values.put("address", users.getAddress());
-        values.put("gender", users.getGender());
-        values.put("roleId", users.getRoleId());
-        long result = db.insert("User", null, values);
-        if (result == -1) return false;
-        else return true;
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("full_name", customer.getFullName());
+        contentValues.put("address", customer.getAddress());
+        contentValues.put("birthday", customer.getBirthday());
+        contentValues.put("gender", customer.getGender());
+        contentValues.put("phone_number", customer.getPhoneNumber());
+        contentValues.put("email", customer.getEmail());
+        contentValues.put("password", customer.getPassword());
+
+        long result = db.insert(customerTable, null, contentValues);
+
+        // if data is inserted incorrectly it will return -1
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public Boolean checkUsername(String username) {
+    // signup caregiver
+    public boolean signupCaregiver(Caregiver caregiver) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from User where username=?", new String[]{username});
-        if (cursor.getCount() > 0) {
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("id", caregiver.getId());
+        contentValues.put("full_name", caregiver.getFullName());
+        contentValues.put("address", caregiver.getAddress());
+        contentValues.put("birthday", caregiver.getBirthday());
+        contentValues.put("gender", caregiver.getGender());
+        contentValues.put("phone_number", caregiver.getPhoneNumber());
+        contentValues.put("email", caregiver.getEmail());
+        contentValues.put("password", caregiver.getPassword());
+
+        long result = db.insert(caregiverTable, null, contentValues);
+
+        // if data is inserted incorrectly it will return -1
+        if (result == -1) {
+            return false;
+        } else {
             return true;
-        } else return false;
+        }
     }
 
-    public Boolean checkUsernamePasswordForUser(String username, String password) {
+    // register pet
+    public boolean registerPet(Pet pet) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from User where username=? and password=? and roleId=2", new String[]{username, password});
-        if (cursor.getCount() > 0) {
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("id", pet.getId());
+        contentValues.put("type", pet.getType());
+        contentValues.put("name", pet.getName());
+        contentValues.put("birthday", pet.getBirthday());
+        contentValues.put("gender", pet.getGender());
+        contentValues.put("breed", pet.getBreed());
+        contentValues.put("color", pet.getColor());
+        contentValues.put("other_details", pet.getOtherDetails());
+
+        long result = db.insert(petTable, null, contentValues);
+
+        // if data is inserted incorrectly it will return -1
+        if (result == -1) {
+            return false;
+        } else {
             return true;
-        } else return false;
+        }
     }
 
-    public Boolean checkUsernamePasswordForAdmin(String username, String password) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from User where username=? and password=? and roleId=1", new String[]{username, password});
-        if (cursor.getCount() > 0) {
-            return true;
-        } else return false;
+//    public Object login(String username, String password) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String[] columns = {"email", "password"};
+//
+//        // check in customer table
+//        Cursor customerCursor = db.query(customerTable, columns, "email=? AND password=?", new String[]{username, password}, null, null, null);
+//        if (customerCursor != null && customerCursor.moveToFirst()) {
+//            return "customer";
+//        }
+//
+//        // check in caregiver table
+//        Cursor caregiverCursor = db.query(caregiverTable, columns, "email=? AND password=?", new String[]{username, password}, null, null, null);
+//        if (caregiverCursor != null && caregiverCursor.moveToFirst()) {
+//            return "caregiver";
+//        }
+//
+//        // if no match found in either table
+//        return false;
+//    }
+
+    public Object login(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // check in customer table
+        Cursor customerCursor = db.rawQuery("SELECT * FROM " + customerTable + " WHERE email=? AND password=?", new String[]{username, password});
+        if (customerCursor != null && customerCursor.moveToFirst()) {
+            return "customer";
+        }
+
+        // check in caregiver table
+        Cursor caregiverCursor = db.rawQuery("SELECT * FROM " + caregiverTable + " WHERE email=? AND password=?", new String[]{username, password});
+        if (caregiverCursor != null && caregiverCursor.moveToFirst()) {
+            return "caregiver";
+        }
+
+        // if no match found in either table
+        return false;
     }
+
+//    public Boolean insertData(Users users) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put("username", users.getUsername());
+//        values.put("password", users.getPassword());
+//        values.put("name", users.getName());
+//        values.put("address", users.getAddress());
+//        values.put("gender", users.getGender());
+//        values.put("roleId", users.getRoleId());
+//        long result = db.insert("User", null, values);
+//        if (result == -1) return false;
+//        else return true;
+//    }
+
+//    public Boolean checkUsername(String username) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery("select * from User where username=?", new String[]{username});
+//        if (cursor.getCount() > 0) {
+//            return true;
+//        } else return false;
+//    }
+//
+//    public Boolean checkUsernamePasswordForUser(String username, String password) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery("select * from User where username=? and password=? and roleId=2", new String[]{username, password});
+//        if (cursor.getCount() > 0) {
+//            return true;
+//        } else return false;
+//    }
+
+//    public Boolean checkUsernamePasswordForAdmin(String username, String password) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor cursor = db.rawQuery("select * from User where username=? and password=? and roleId=1", new String[]{username, password});
+//        if (cursor.getCount() > 0) {
+//            return true;
+//        } else return false;
+//    }
 
 
 }
