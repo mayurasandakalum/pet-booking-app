@@ -111,7 +111,7 @@
                     <com.google.android.material.textfield.TextInputLayout style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edittext_date"
+                            android:id="@+id/birthday"
                             style="@style/StyleTextInputEditText"
                             android:hint="Birthday"
                             android:inputType="date" />
@@ -153,7 +153,7 @@
                         app:hintTextColor="@color/bg_secondary">
 
                         <AutoCompleteTextView
-                            android:id="@+id/auto_complete_txt"
+                            android:id="@+id/gender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/bg_primary"
