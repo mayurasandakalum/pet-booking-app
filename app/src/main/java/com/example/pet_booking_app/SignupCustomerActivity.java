@@ -1,6 +1,7 @@
 package com.example.pet_booking_app;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.pet_booking_app.models.Customer;
 import com.example.pet_booking_app.models.DBHelper;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -23,13 +25,16 @@ import java.util.Calendar;
 
 public class SignupCustomerActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     // Declaration of instance variables
-    ArrayAdapter<String> adapterItems;
-    EditText fullName, address, birthday, phone, email, password, confirmPassword;
+    EditText birthday;
+    TextInputEditText fullName, address, phone, email, password, confirmPassword;
     AutoCompleteTextView gender;
-    Button signup, login;
+    Button next, login;
     DBHelper DB;
 
+    ArrayAdapter<String> adapterItems;
+
     String[] items = {"Male", "Female"};
+
 
     // Method called when the activity is created
     @Override
@@ -38,15 +43,17 @@ public class SignupCustomerActivity extends AppCompatActivity implements DatePic
         setContentView(R.layout.activity_signup_customer);
 
         // Initialize UI elements by finding them in the layout
-        birthday = (EditText) findViewById(R.id.birthday);
+        birthday = (EditText) findViewById(R.id.edittext_date);
+        gender = findViewById(R.id.autocomplete_gender);
+
         fullName = findViewById(R.id.edittext_fullname);
         address = findViewById(R.id.edittext_address);
-        gender = findViewById(R.id.gender);
+        birthday = findViewById(R.id.edittext_date);
         phone = findViewById(R.id.edittext_phone);
         email = findViewById(R.id.edittext_email);
         password = findViewById(R.id.edittext_pass);
         confirmPassword = findViewById(R.id.edittext_pass_confirm);
-        signup = findViewById(R.id.btn_toggle_signup);
+        next = findViewById(R.id.btn_toggle_next);
         login = findViewById(R.id.btn_login);
 
         DB = new DBHelper(this);
@@ -70,6 +77,42 @@ public class SignupCustomerActivity extends AppCompatActivity implements DatePic
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = parent.getItemAtPosition(position).toString();
                 Toast.makeText(getApplicationContext(), "Item: " + item, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String fullNameVal = fullName.getText().toString();
+                String addressVal = address.getText().toString();
+                String birthdayVal = birthday.getText().toString();
+                String genderVal = gender.getText().toString();
+                String phoneVal = phone.getText().toString();
+                String emailVal = email.getText().toString();
+                String passwordVal = password.getText().toString();
+                String confirmPasswordVal = confirmPassword.getText().toString();
+
+                if (passwordVal.equals(confirmPasswordVal)) {
+                    Customer customer = new Customer(fullNameVal, addressVal, birthdayVal, genderVal, phoneVal, emailVal, passwordVal);
+                    boolean check = DB.signupCustomer(customer);
+                    if (check) {
+                        Toast.makeText(SignupCustomerActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(SignupCustomerActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(SignupCustomerActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Create an Intent to start LoginActivity
+                Intent intent = new Intent(SignupCustomerActivity.this, LoginActivity.class);
+                // Start the LoginActivity
+                startActivity(intent);
             }
         });
 

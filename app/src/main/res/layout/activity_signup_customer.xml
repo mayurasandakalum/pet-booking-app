@@ -91,19 +91,19 @@
                     <!--            </android.support.design.widget.TextInputLayout>-->
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_fullname"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_fullname"
                             style="@style/StyleTextInputEditText"
                             android:hint="Full Name" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_address"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_address"
                             style="@style/StyleTextInputEditText"
                             android:hint="Address" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -111,7 +111,7 @@
                     <com.google.android.material.textfield.TextInputLayout style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/birthday"
+                            android:id="@+id/edittext_date"
                             style="@style/StyleTextInputEditText"
                             android:hint="Birthday"
                             android:inputType="date" />
@@ -153,7 +153,7 @@
                         app:hintTextColor="@color/bg_secondary">
 
                         <AutoCompleteTextView
-                            android:id="@+id/gender"
+                            android:id="@+id/autocomplete_gender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/bg_primary"
@@ -163,10 +163,10 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_phone"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_phone"
                             style="@style/StyleTextInputEditText"
                             android:hint="Phone Number" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -183,10 +183,10 @@
                     <!--                android:textStyle="bold" />-->
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_email"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_email"
                             style="@style/StyleTextInputEditText"
                             android:hint="Email"
                             android:inputType="textEmailAddress" />
@@ -204,20 +204,20 @@
                     <!--                android:textStyle="bold" />-->
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_pass"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_pass"
                             style="@style/StyleTextInputEditText"
                             android:hint="Password"
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_pass_confirm"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_pass_confirm"
                             style="@style/StyleTextInputEditText"
                             android:hint="Confirm Password"
                             android:inputType="textPassword" />
@@ -242,7 +242,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/btn_toggle_signup"
+                        android:id="@+id/btn_toggle_next"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
