@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 
 import com.example.pet_booking_app.Database.PetBookingDB;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class DBHelper extends SQLiteOpenHelper {
     // db name
@@ -167,23 +170,34 @@ public class DBHelper extends SQLiteOpenHelper {
 //        return false;
 //    }
 
-    public Object login(String username, String password) {
+    public Map<String, Object> login(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
+        Map<String, Object> result = new HashMap<>();
 
         // check in customer table
         Cursor customerCursor = db.rawQuery("SELECT * FROM " + customerTable + " WHERE email=? AND password=?", new String[]{username, password});
         if (customerCursor != null && customerCursor.moveToFirst()) {
-            return "customer";
+            int idIndex = customerCursor.getColumnIndex("id");
+            if (idIndex >= 0) {
+                result.put("userType", "customer");
+                result.put("id", customerCursor.getInt(idIndex));
+                return result;
+            }
         }
 
         // check in caregiver table
         Cursor caregiverCursor = db.rawQuery("SELECT * FROM " + caregiverTable + " WHERE email=? AND password=?", new String[]{username, password});
         if (caregiverCursor != null && caregiverCursor.moveToFirst()) {
-            return "caregiver";
+            int idIndex = caregiverCursor.getColumnIndex("id");
+            if (idIndex >= 0) {
+                result.put("userType", "caregiver");
+                result.put("id", caregiverCursor.getInt(idIndex));
+                return result;
+            }
         }
 
         // if no match found in either table
-        return false;
+        return null;
     }
 
 //    public Boolean insertData(Users users) {

@@ -1,5 +1,6 @@
 package com.example.pet_booking_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -36,9 +37,8 @@ public class CustomerPetsActivity extends AppCompatActivity {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(CustomerPetsActivity.this, PetRegister.class);
+                startActivity(intent);
             }
         });
     }
