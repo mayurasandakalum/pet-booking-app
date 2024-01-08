@@ -12,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Petbookingapp"
         tools:targetApi="31">
-
+<!--        <activity-->
+<!--            android:name=".CustomerPetsActivity"-->
+<!--            android:exported="false"-->
+<!--            android:theme="@style/Theme.Petbookingapp" />-->
         <activity
-            android:name=".PetRegister"
+            android:name=".CustomerPetsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".caregiver_service"
             android:exported="false" />
@@ -37,10 +39,9 @@
             android:exported="false" />
         <activity
             android:name=".PetDetailsView"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".PetRegister"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".PetRegister" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".SignupCaregiverActivity"
             android:exported="false" />
