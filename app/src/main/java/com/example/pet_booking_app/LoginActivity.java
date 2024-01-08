@@ -1,6 +1,7 @@
 package com.example.pet_booking_app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,8 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View view) {
                 // Handle signup click
+                Intent intent = new Intent(LoginActivity.this, SignupChoiceActivity.class);
+                startActivity(intent);
             }
         });
     }

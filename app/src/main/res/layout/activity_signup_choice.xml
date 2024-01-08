@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:text="Tell us about the pet"
+                android:text="Tell us about yourself"
                 android:textColor="@color/text_primary"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="start"
                 android:paddingEnd="20dp"
-                android:text="Once you complete the sign in process, you'll have the opportunity to add and modify your pet's info"
+                android:text="Once you complete the sign up process, you'll have the opportunity to add and modify your profile information"
                 android:textColor="@color/text_secondary"
                 android:textSize="15sp"
                 android:textStyle="normal" />
