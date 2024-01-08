@@ -17,7 +17,7 @@ public class SignupChoiceActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioCustomer;
     private RadioButton radioCaregiver;
-    private Button nextButton;
+    private Button nextButton, backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class SignupChoiceActivity extends AppCompatActivity {
         radioCustomer = (RadioButton) findViewById(R.id.radiobtn_customer);
         radioCaregiver = (RadioButton) findViewById(R.id.radiobtn_caregiver);
         nextButton = (Button) findViewById(R.id.btn_next);
+        backButton = (Button) findViewById(R.id.btn_back);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,13 @@ public class SignupChoiceActivity extends AppCompatActivity {
                     Intent intent = new Intent(SignupChoiceActivity.this, SignupCaregiverActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Go back to the previous activity
             }
         });
 

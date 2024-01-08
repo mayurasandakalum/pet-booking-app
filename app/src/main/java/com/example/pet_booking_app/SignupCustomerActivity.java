@@ -28,7 +28,7 @@ public class SignupCustomerActivity extends AppCompatActivity implements DatePic
     EditText birthday;
     TextInputEditText fullName, address, phone, email, password, confirmPassword;
     AutoCompleteTextView gender;
-    Button next, login;
+    Button signup, login;
     DBHelper DB;
 
     ArrayAdapter<String> adapterItems;
@@ -53,7 +53,7 @@ public class SignupCustomerActivity extends AppCompatActivity implements DatePic
         email = findViewById(R.id.edittext_email);
         password = findViewById(R.id.edittext_pass);
         confirmPassword = findViewById(R.id.edittext_pass_confirm);
-        next = findViewById(R.id.btn_toggle_next);
+        signup = findViewById(R.id.btn_signup);
         login = findViewById(R.id.btn_login);
 
         DB = new DBHelper(this);
@@ -80,7 +80,7 @@ public class SignupCustomerActivity extends AppCompatActivity implements DatePic
             }
         });
 
-        next.setOnClickListener(new View.OnClickListener() {
+        signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String fullNameVal = fullName.getText().toString();
@@ -97,6 +97,10 @@ public class SignupCustomerActivity extends AppCompatActivity implements DatePic
                     boolean check = DB.signupCustomer(customer);
                     if (check) {
                         Toast.makeText(SignupCustomerActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                        // Create an Intent to start LoginActivity
+                        Intent intent = new Intent(SignupCustomerActivity.this, LoginActivity.class);
+                        // Start the LoginActivity
+                        startActivity(intent);
                     } else {
                         Toast.makeText(SignupCustomerActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                     }
