@@ -12,12 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Petbookingapp"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".CustomerPetsActivity"-->
-<!--            android:exported="false"-->
-<!--            android:theme="@style/Theme.Petbookingapp" />-->
         <activity
-            android:name=".LoginActivity"
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,14 +22,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".caregiver_service"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
+            android:name=".CaregiverService"
             android:exported="false" />
 <!--        <activity-->
-<!--            android:name=".LoginActivity"-->
+<!--            android:name=".HomeActivity"-->
 <!--            android:exported="false" />-->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".CaregiverBookings"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -55,6 +55,7 @@
         <activity
             android:name=".CustomerPetsActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>

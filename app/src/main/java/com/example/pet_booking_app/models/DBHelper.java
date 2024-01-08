@@ -22,6 +22,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String customerTable = "customer";
     public static final String caregiverTable = "caregiver";
     public static final String petTable = "pet";
+    public static final String caregiverServicesTable = "caregiver_services";
 
     // table create queries
     public static final String customerTableCreate = "CREATE TABLE " + customerTable + "(" +
@@ -58,6 +59,13 @@ public class DBHelper extends SQLiteOpenHelper {
             "other_details TEXT" +
             ")";
 
+    public static final String caregiverServicesTableCreate = "CREATE TABLE " + caregiverServicesTable + "(" +
+            "id INTEGER PRIMARY KEY," +
+            "caregiver_id INTEGER," +
+            "service_types TEXT," +
+            "service_locations TEXT" +
+            ")";
+
     public DBHelper(@Nullable Context context) {
         super(context, dbName, null, 1);
     }
@@ -67,6 +75,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(customerTableCreate);
         sqLiteDatabase.execSQL(careGiverTableCreate);
         sqLiteDatabase.execSQL(petTableCreate);
+        sqLiteDatabase.execSQL(caregiverServicesTableCreate);
     }
 
 
@@ -75,6 +84,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("Drop table if exists " + customerTable);
         sqLiteDatabase.execSQL("Drop table if exists " + caregiverTable);
         sqLiteDatabase.execSQL("Drop table if exists " + petTable);
+        sqLiteDatabase.execSQL("Drop table if exists " + caregiverServicesTable);
 
         onCreate(sqLiteDatabase);
     }
@@ -107,7 +117,6 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("id", caregiver.getId());
         contentValues.put("full_name", caregiver.getFullName());
         contentValues.put("address", caregiver.getAddress());
         contentValues.put("birthday", caregiver.getBirthday());
@@ -131,7 +140,6 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put("id", pet.getId());
         contentValues.put("type", pet.getType());
         contentValues.put("name", pet.getName());
         contentValues.put("birthday", pet.getBirthday());

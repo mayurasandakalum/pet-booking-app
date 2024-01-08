@@ -8,5 +8,6 @@
     <color name="bg_search">#0deae9ea</color>
     <color name="text_primary">#EAE9EA</color>
     <color name="text_secondary">#80eae9ea</color>
+    <color name="card">#1AEAE9EA</color>
     <color name="btn_txt_primary">#090808</color>
 </resources>

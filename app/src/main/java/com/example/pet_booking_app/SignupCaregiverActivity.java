@@ -93,8 +93,11 @@ public class SignupCaregiverActivity extends AppCompatActivity implements DatePi
                 if (passwordText.equals(confirmPasswordText)) {
                     Caregiver caregiver = new Caregiver(fullnameText, addressText, dateText, genderText, phoneText, emailText, passwordText);
                     boolean isInserted = dbHelper.signupCaregiver(caregiver);
+                    Intent intent;
                     if (isInserted) {
                         Toast.makeText(SignupCaregiverActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                        intent = new Intent(SignupCaregiverActivity.this, CaregiverService.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(SignupCaregiverActivity.this, "Registration Failed", Toast.LENGTH_LONG).show();
                     }

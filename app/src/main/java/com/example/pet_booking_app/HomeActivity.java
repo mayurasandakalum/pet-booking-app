@@ -23,12 +23,8 @@ public class HomeActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* Clear all login details */
-                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                settings.edit().clear().commit();
-
                 /* Redirect to login screen */
-                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(HomeActivity.this, CaregiverBookings.class);
                 startActivity(intent);
                 finish();
             }
