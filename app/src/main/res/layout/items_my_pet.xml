@@ -39,15 +39,6 @@
                 android:id="@+id/is_booked"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Booked"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
-            <TextView
-                android:id="@+id/caregiver_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="by Tharindus"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textColor="@color/white"/>

@@ -1,5 +1,6 @@
 package com.example.pet_booking_app.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,14 @@ public class MyPetAdapter extends RecyclerView.Adapter<MyPetAdapter.PetViewHolde
         Pet pet = pets.get(position);
         holder.petName.setText(pet.getName());
 
+        Log.d("getIsBooked", "onBindViewHolder: " + pet.getIsBooked());
+
+        if ("Yes".equals(pet.getIsBooked())) {
+            holder.isBooked.setText("Booked");
+        } else {
+            holder.isBooked.setText("");
+        }
+
         int imageResource;
         if (pet.getType().equalsIgnoreCase("dog")) {
             int randomIndex = new Random().nextInt(dogImages.length);
@@ -62,14 +71,12 @@ public class MyPetAdapter extends RecyclerView.Adapter<MyPetAdapter.PetViewHolde
         ImageView petImage;
         TextView petName;
         TextView isBooked;
-        TextView careGiverName;
 
         public PetViewHolder(View itemView) {
             super(itemView);
             petImage = itemView.findViewById(R.id.pet_img);
             petName = itemView.findViewById(R.id.pet_name);
             isBooked = itemView.findViewById(R.id.is_booked);
-            careGiverName = itemView.findViewById(R.id.caregiver_name);
         }
     }
 }

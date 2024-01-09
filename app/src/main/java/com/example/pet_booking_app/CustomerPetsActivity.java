@@ -79,7 +79,6 @@ public class CustomerPetsActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(CustomerPetsActivity.this);
         pets = dbHelper.getPetsByOwnerId(ownerId);
 
-
         petAdapter = new MyPetAdapter(pets);
         petsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         petsRecyclerView.setAdapter(petAdapter);
