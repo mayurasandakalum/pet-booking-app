@@ -26,49 +26,18 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String caregiverTable = "caregiver";
     public static final String petTable = "pet";
     public static final String caregiverServicesTable = "caregiver_services";
+    public static final String bookingsTable = "bookings";
 
     // table create queries
-    public static final String customerTableCreate = "CREATE TABLE " + customerTable + "(" +
-            "id INTEGER PRIMARY KEY," +
-            "full_name TEXT," +
-            "address TEXT," +
-            "birthday TEXT," +
-            "gender TEXT," +
-            "phone_number TEXT," +
-            "email TEXT," +
-            "password TEXT" +
-            ")";
+    public static final String customerTableCreate = "CREATE TABLE " + customerTable + "(" + "id INTEGER PRIMARY KEY," + "full_name TEXT," + "address TEXT," + "birthday TEXT," + "gender TEXT," + "phone_number TEXT," + "email TEXT," + "password TEXT" + ")";
 
-    public static final String careGiverTableCreate = "CREATE TABLE " + caregiverTable + "(" +
-            "id INTEGER PRIMARY KEY," +
-            "full_name TEXT," +
-            "address TEXT," +
-            "birthday TEXT," +
-            "gender TEXT," +
-            "phone_number TEXT," +
-            "email TEXT," +
-            "password TEXT" +
-            ")";
+    public static final String careGiverTableCreate = "CREATE TABLE " + caregiverTable + "(" + "id INTEGER PRIMARY KEY," + "full_name TEXT," + "address TEXT," + "birthday TEXT," + "gender TEXT," + "phone_number TEXT," + "email TEXT," + "password TEXT" + ")";
 
-    public static final String petTableCreate = "CREATE TABLE " + petTable + "(" +
-            "id INTEGER PRIMARY KEY," +
-            "owner_id INTEGER," +
-            "name TEXT," +
-            "type TEXT," +
-            "birthday TEXT," +
-            "gender TEXT," +
-            "breed TEXT," +
-            "color TEXT," +
-            "other_details TEXT," +
-            "is_booked TEXT" +
-            ")";
+    public static final String petTableCreate = "CREATE TABLE " + petTable + "(" + "id INTEGER PRIMARY KEY," + "owner_id INTEGER," + "name TEXT," + "type TEXT," + "birthday TEXT," + "gender TEXT," + "breed TEXT," + "color TEXT," + "other_details TEXT," + "is_booked TEXT" + ")";
 
-    public static final String caregiverServicesTableCreate = "CREATE TABLE " + caregiverServicesTable + "(" +
-            "id INTEGER PRIMARY KEY," +
-            "caregiver_id INTEGER," +
-            "service_types TEXT," +
-            "service_locations TEXT" +
-            ")";
+    public static final String caregiverServicesTableCreate = "CREATE TABLE " + caregiverServicesTable + "(" + "id INTEGER PRIMARY KEY," + "caregiver_id INTEGER," + "service_types TEXT," + "service_locations TEXT" + ")";
+
+    public static final String bookingsTableCreate = "CREATE TABLE " + bookingsTable + "(" + "id INTEGER PRIMARY KEY," + "caregiver_id INTEGER," + "pet_id INTEGER," + "pet_name TEXT" + ")";
 
     public DBHelper(@Nullable Context context) {
         super(context, dbName, null, 1);
@@ -80,6 +49,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(careGiverTableCreate);
         sqLiteDatabase.execSQL(petTableCreate);
         sqLiteDatabase.execSQL(caregiverServicesTableCreate);
+        sqLiteDatabase.execSQL(bookingsTableCreate);
     }
 
 
@@ -89,6 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("Drop table if exists " + caregiverTable);
         sqLiteDatabase.execSQL("Drop table if exists " + petTable);
         sqLiteDatabase.execSQL("Drop table if exists " + caregiverServicesTable);
+        sqLiteDatabase.execSQL("Drop table if exists " + bookingsTable);
 
         onCreate(sqLiteDatabase);
     }
@@ -173,26 +144,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-//    public Object login(String username, String password) {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String[] columns = {"email", "password"};
-//
-//        // check in customer table
-//        Cursor customerCursor = db.query(customerTable, columns, "email=? AND password=?", new String[]{username, password}, null, null, null);
-//        if (customerCursor != null && customerCursor.moveToFirst()) {
-//            return "customer";
-//        }
-//
-//        // check in caregiver table
-//        Cursor caregiverCursor = db.query(caregiverTable, columns, "email=? AND password=?", new String[]{username, password}, null, null, null);
-//        if (caregiverCursor != null && caregiverCursor.moveToFirst()) {
-//            return "caregiver";
-//        }
-//
-//        // if no match found in either table
-//        return false;
-//    }
-
     public Map<String, Object> login(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         Map<String, Object> result = new HashMap<>();
@@ -241,16 +192,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 int otherDetailsIndex = cursor.getColumnIndex("other_details");
                 int isBookedIndex = cursor.getColumnIndex("is_booked");
 
-                if (idIndex >= 0 &&
-                        ownerIdIndex >= 0 &&
-                        nameIndex >= 0 &&
-                        typeIndex >= 0 &&
-                        genderIndex >= 0 &&
-                        breedIndex >= 0 &&
-                        colorIndex >= 0 &&
-                        birthdayIndex >= 0 &&
-                        otherDetailsIndex >= 0 &&
-                        isBookedIndex >= 0 ) {
+                if (idIndex >= 0 && ownerIdIndex >= 0 && nameIndex >= 0 && typeIndex >= 0 && genderIndex >= 0 && breedIndex >= 0 && colorIndex >= 0 && birthdayIndex >= 0 && otherDetailsIndex >= 0 && isBookedIndex >= 0) {
                     int id = cursor.getInt(idIndex);
                     int ownerIdDb = cursor.getInt(ownerIdIndex);
                     String name = cursor.getString(nameIndex);
@@ -300,16 +242,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 int otherDetailsIndex = cursor.getColumnIndex("other_details");
                 int isBookedIndex = cursor.getColumnIndex("is_booked");
 
-                if (idIndex >= 0 &&
-                        ownerIdIndex >= 0 &&
-                        nameIndex >= 0 &&
-                        typeIndex >= 0 &&
-                        genderIndex >= 0 &&
-                        breedIndex >= 0 &&
-                        colorIndex >= 0 &&
-                        birthdayIndex >= 0 &&
-                        otherDetailsIndex >= 0 &&
-                        isBookedIndex >= 0 ) {
+                if (idIndex >= 0 && ownerIdIndex >= 0 && nameIndex >= 0 && typeIndex >= 0 && genderIndex >= 0 && breedIndex >= 0 && colorIndex >= 0 && birthdayIndex >= 0 && otherDetailsIndex >= 0 && isBookedIndex >= 0) {
                     int id = cursor.getInt(idIndex);
                     int ownerId = cursor.getInt(ownerIdIndex);
                     String name = cursor.getString(nameIndex);
@@ -341,5 +274,17 @@ public class DBHelper extends SQLiteOpenHelper {
         int rowsUpdated = db.update(petTable, contentValues, "id = ?", new String[]{String.valueOf(petId)});
 
         return rowsUpdated > 0;
+    }
+
+    // insert booking
+    public boolean insertBooking(int caregiverId, int petId, String petName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("caregiver_id", caregiverId);
+        values.put("pet_id", petId);
+        values.put("pet_name", petName);
+
+        long result = db.insert(bookingsTable, null, values);
+        return result != -1;
     }
 }

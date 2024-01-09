@@ -3,6 +3,7 @@ package com.example.pet_booking_app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.example.pet_booking_app.models.DBHelper;
 
 public class PetDetailsView extends AppCompatActivity {
+    public static final String PREFS_NAME = "LoginPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +44,23 @@ public class PetDetailsView extends AppCompatActivity {
             public void onClick(View v) {
                 // Assuming you have a PetDatabaseHelper instance db
                 DBHelper db = new DBHelper(PetDetailsView.this);
+
                 boolean success = db.updatePetIsBooked(id, "Yes");
                 Log.d("updatedb", "onClick: " + success);
                 if (success) {
                     Toast.makeText(PetDetailsView.this, "Pet booking status updated", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(PetDetailsView.this, "Failed to update pet booking status", Toast.LENGTH_SHORT).show();
+                }
+
+                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                int caregiver_id = sharedPreferences.getInt("userId", 0);
+
+                success = db.insertBooking(caregiver_id, id, name);
+                if (success) {
+                    Toast.makeText(PetDetailsView.this, "Booking made successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PetDetailsView.this, "Failed to make booking", Toast.LENGTH_SHORT).show();
                 }
             }
         });
