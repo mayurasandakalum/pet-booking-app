@@ -287,4 +287,36 @@ public class DBHelper extends SQLiteOpenHelper {
         long result = db.insert(bookingsTable, null, values);
         return result != -1;
     }
+
+    // Get all bookings data for a caregiver
+    public List<Booking> getBookingsForCaregiver(int caregiverId) {
+        List<Booking> bookingsList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT * FROM " + bookingsTable + " WHERE caregiver_id = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(caregiverId)});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndex("id");
+            int petIdIndex = cursor.getColumnIndex("pet_id");
+            int petNameIndex = cursor.getColumnIndex("pet_name");
+
+            while (cursor.moveToNext()) {
+                if (idIndex >= 0 && petIdIndex >= 0 && petNameIndex >= 0) {
+                    int bookingId = cursor.getInt(idIndex);
+                    int petId = cursor.getInt(petIdIndex);
+                    String petName = cursor.getString(petNameIndex);
+
+                    // Create a new Bookings object
+                    Booking booking = new Booking(bookingId, caregiverId, petId, petName);
+
+                    // Add the booking to the list
+                    bookingsList.add(booking);
+                }
+            }
+        }
+
+        cursor.close();
+        return bookingsList;
+    }
 }

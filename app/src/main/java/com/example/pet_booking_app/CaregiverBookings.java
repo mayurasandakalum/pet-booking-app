@@ -4,12 +4,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.pet_booking_app.Adapters.BookingsAdapter;
+import com.example.pet_booking_app.Adapters.MyPetAdapter;
 import com.example.pet_booking_app.databinding.ActivityCaregiverBookingsBinding;
+import com.example.pet_booking_app.models.Booking;
+import com.example.pet_booking_app.models.DBHelper;
+import com.example.pet_booking_app.models.Pet;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Html;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,13 +24,21 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pet_booking_app.databinding.ActivityCustomerPetsBinding;
+
+import java.util.List;
 
 public class CaregiverBookings extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityCaregiverBookingsBinding binding;
+
+    RecyclerView petsRecyclerView;
+    BookingsAdapter bookingAdapter;
+    List<Booking> bookings;
 
     public static final String PREFS_NAME = "LoginPrefs";
 
@@ -40,13 +54,21 @@ public class CaregiverBookings extends AppCompatActivity {
                 .fromHtml("<font color='#ffffff'> Your bookings </font>"));
         getWindow().setStatusBarColor(getResources().getColor(R.color.text_primary)); // Change the color here
 
-//        binding.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(CustomerPetsActivity.this, PetRegister.class);
-//                startActivity(intent);
-//            }
-//        });
+        petsRecyclerView = findViewById(R.id.petsRecyclerView);
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        int ownerId = prefs.getInt("userId", -1);
+
+        // Fetch the pets from the database
+        DBHelper dbHelper = new DBHelper(CaregiverBookings.this);
+        bookings = dbHelper.getBookingsForCaregiver(ownerId);
+
+        Log.d("bookingsownerId", "onCreate: " + ownerId);
+
+        bookingAdapter = new BookingsAdapter(bookings);
+        petsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        petsRecyclerView.setAdapter(bookingAdapter);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

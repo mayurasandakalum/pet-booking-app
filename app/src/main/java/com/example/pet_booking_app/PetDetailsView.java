@@ -53,7 +53,7 @@ public class PetDetailsView extends AppCompatActivity {
                     Toast.makeText(PetDetailsView.this, "Failed to update pet booking status", Toast.LENGTH_SHORT).show();
                 }
 
-                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                 int caregiver_id = sharedPreferences.getInt("userId", 0);
 
                 success = db.insertBooking(caregiver_id, id, name);
