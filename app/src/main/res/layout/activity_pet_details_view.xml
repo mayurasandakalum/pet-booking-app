@@ -87,6 +87,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/nameTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jimmy"
@@ -109,6 +110,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/birthdayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="2010-10-05"
@@ -131,9 +133,32 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/breedTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Samoyed"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Gender: "
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/genderTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
                         android:textColor="@color/text_primary"
                         android:textSize="20sp" />
                 </LinearLayout>
@@ -153,6 +178,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/colorTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="White"
@@ -175,6 +201,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/otherDetailsTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Friendly and playful"

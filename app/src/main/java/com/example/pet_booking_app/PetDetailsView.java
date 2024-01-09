@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class PetDetailsView extends AppCompatActivity {
 
@@ -21,6 +22,19 @@ public class PetDetailsView extends AppCompatActivity {
         String color = intent.getStringExtra("color");
         String otherDetails = intent.getStringExtra("otherDetails");
 
-        Log.d("PetDetailsView", "Name: " + name + ", Birthday: " + birthday + ", Gender: " + gender + ", Breed: " + breed + ", Color: " + color + ", Other details: " + otherDetails);
+        TextView nameTextView = findViewById(R.id.nameTextView);
+        TextView birthdayTextView = findViewById(R.id.birthdayTextView);
+        TextView genderTextView = findViewById(R.id.genderTextView);
+        TextView breedTextView = findViewById(R.id.breedTextView);
+        TextView colorTextView = findViewById(R.id.colorTextView);
+        TextView otherDetailsTextView = findViewById(R.id.otherDetailsTextView);
+
+        nameTextView.setText(name);
+        birthdayTextView.setText(birthday);
+        genderTextView.setText(gender);
+        breedTextView.setText(breed);
+        colorTextView.setText(color);
+        otherDetailsTextView.setText(otherDetails);
+
     }
 }
