@@ -118,10 +118,10 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_name"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_name"
                             style="@style/StyleTextInputEditText"
                             android:hint="Name" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -156,7 +156,7 @@
                         app:hintTextColor="@color/bg_secondary">
 
                         <AutoCompleteTextView
-                            android:id="@+id/auto_complete_txt"
+                            android:id="@+id/auto_complete_gender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/bg_primary"
@@ -166,28 +166,28 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_breed"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_breed"
                             style="@style/StyleTextInputEditText"
                             android:hint="Breed" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_pass"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_color"
                             style="@style/StyleTextInputEditText"
                             android:hint="Color" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/edittext_pass_confirm"
                         style="@style/StyleTextInputLayout">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edittext_otherdetails"
                             style="@style/StyleTextInputEditText"
                             android:layout_height="100dp"
                             android:hint="Other Details"
@@ -203,7 +203,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/btn_finish"
+                        android:id="@+id/btn_add"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

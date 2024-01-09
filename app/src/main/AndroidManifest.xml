@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Petbookingapp"
         tools:targetApi="31">
         <activity
-            android:name=".PetRegister"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,28 +21,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity-->
-<!--            android:name=".CaregiverService"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".HomeActivity"-->
-<!--            android:exported="false" />-->
         <activity
-            android:name=".LoginActivity"
+            android:name=".CaregiverService"
             android:exported="false" />
-
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
 <!--        <activity-->
-<!--            android:name=".CaregiverBookings"-->
+<!--            android:name=".LoginActivity"-->
 <!--            android:exported="false" />-->
+
+        <activity
+            android:name=".CaregiverBookings"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".PetDetailsView"-->
-<!--            android:exported="false" />-->
-<!--         <activity-->
-<!--             android:name=".PetRegister"-->
-<!--             android:exported="false" />-->
+        <activity
+            android:name=".PetDetailsView"
+            android:exported="false" />
+         <activity
+             android:name=".PetRegister"
+             android:exported="false" />
         <activity
             android:name=".SignupCaregiverActivity"
             android:exported="false" />
@@ -52,9 +52,9 @@
         <activity
             android:name=".SignupCustomerActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".CustomerPetsActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".CustomerPetsActivity"
+            android:exported="false" />
 
     </application>
 

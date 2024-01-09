@@ -51,6 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
             "id INTEGER PRIMARY KEY," +
             "owner_id INTEGER," +
             "name TEXT," +
+            "type TEXT," +
             "birthday TEXT," +
             "gender TEXT," +
             "pet_type TEXT," +
@@ -141,6 +142,7 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
 
         contentValues.put("type", pet.getType());
+        contentValues.put("owner_id", pet.getOwnerId());
         contentValues.put("name", pet.getName());
         contentValues.put("birthday", pet.getBirthday());
         contentValues.put("gender", pet.getGender());

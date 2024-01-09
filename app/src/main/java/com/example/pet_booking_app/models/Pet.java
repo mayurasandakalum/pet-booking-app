@@ -9,9 +9,10 @@ public class Pet {
     private String breed;
     private String color;
     private String otherDetails;
+    private int ownerId;
 
     // constructors
-    public Pet(String type, String name, String birthday, String gender, String breed, String color, String otherDetails) {
+    public Pet(String type, String name, String birthday, String gender, String breed, String color, String otherDetails, int ownerId) {
         this.type = type;
         this.name = name;
         this.birthday = birthday;
@@ -19,9 +20,10 @@ public class Pet {
         this.breed = breed;
         this.color = color;
         this.otherDetails = otherDetails;
+        this.ownerId = ownerId;
     }
 
-    public Pet(int id, String type, String name, String birthday, String gender, String breed, String color, String otherDetails) {
+    public Pet(int id, String type, String name, String birthday, String gender, String breed, String color, String otherDetails, int ownerId) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -30,6 +32,7 @@ public class Pet {
         this.breed = breed;
         this.color = color;
         this.otherDetails = otherDetails;
+        this.ownerId = ownerId;
     }
 
     // getters
@@ -96,5 +99,13 @@ public class Pet {
 
     public void setOtherDetails(String otherDetails) {
         this.otherDetails = otherDetails;
+    }
+
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 }
