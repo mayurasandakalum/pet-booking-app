@@ -152,13 +152,13 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("color", pet.getColor());
         contentValues.put("other_details", pet.getOtherDetails());
 
-        Log.d("dbpet", pet.getType()+
-                pet.getOwnerId()+
-                pet.getName()+
-                pet.getBirthday()+
-                pet.getGender()+
-                pet.getBreed()+
-                pet.getColor()+
+        Log.d("dbpet", pet.getType() +
+                pet.getOwnerId() +
+                pet.getName() +
+                pet.getBirthday() +
+                pet.getGender() +
+                pet.getBreed() +
+                pet.getColor() +
                 pet.getOtherDetails());
 
         long result = db.insert(petTable, null, contentValues);
@@ -237,7 +237,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 int colorIndex = cursor.getColumnIndex("color");
                 int birthdayIndex = cursor.getColumnIndex("birthday");
                 int otherDetailsIndex = cursor.getColumnIndex("other_details");
-                // Add more column indexes as per your table structure
 
                 if (idIndex >= 0 &&
                         ownerIdIndex >= 0 &&
@@ -269,43 +268,59 @@ public class DBHelper extends SQLiteOpenHelper {
         return pets;
     }
 
-//    public Boolean insertData(Users users) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//        values.put("username", users.getUsername());
-//        values.put("password", users.getPassword());
-//        values.put("name", users.getName());
-//        values.put("address", users.getAddress());
-//        values.put("gender", users.getGender());
-//        values.put("roleId", users.getRoleId());
-//        long result = db.insert("User", null, values);
-//        if (result == -1) return false;
-//        else return true;
-//    }
+    public List<Pet> getAllPets() {
+        List<Pet> pets = new ArrayList<>();
 
-//    public Boolean checkUsername(String username) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery("select * from User where username=?", new String[]{username});
-//        if (cursor.getCount() > 0) {
-//            return true;
-//        } else return false;
-//    }
-//
-//    public Boolean checkUsernamePasswordForUser(String username, String password) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery("select * from User where username=? and password=? and roleId=2", new String[]{username, password});
-//        if (cursor.getCount() > 0) {
-//            return true;
-//        } else return false;
-//    }
+        // Get a readable database
+        SQLiteDatabase db = this.getReadableDatabase();
 
-//    public Boolean checkUsernamePasswordForAdmin(String username, String password) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery("select * from User where username=? and password=? and roleId=1", new String[]{username, password});
-//        if (cursor.getCount() > 0) {
-//            return true;
-//        } else return false;
-//    }
+        // Define the SQL query
+        String queryString = "SELECT * FROM " + petTable;
 
+        // Execute the query
+        Cursor cursor = db.rawQuery(queryString, null);
 
+        // Iterate through the results and create Pet objects
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int idIndex = cursor.getColumnIndex("id");
+                int ownerIdIndex = cursor.getColumnIndex("owner_id");
+                int nameIndex = cursor.getColumnIndex("name");
+                int typeIndex = cursor.getColumnIndex("type");
+                int genderIndex = cursor.getColumnIndex("gender");
+                int breedIndex = cursor.getColumnIndex("breed");
+                int colorIndex = cursor.getColumnIndex("color");
+                int birthdayIndex = cursor.getColumnIndex("birthday");
+                int otherDetailsIndex = cursor.getColumnIndex("other_details");
+
+                if (idIndex >= 0 &&
+                        ownerIdIndex >= 0 &&
+                        nameIndex >= 0 &&
+                        typeIndex >= 0 &&
+                        genderIndex >= 0 &&
+                        breedIndex >= 0 &&
+                        colorIndex >= 0 &&
+                        birthdayIndex >= 0 &&
+                        otherDetailsIndex >= 0) {
+                    int id = cursor.getInt(idIndex);
+                    int ownerId = cursor.getInt(ownerIdIndex);
+                    String name = cursor.getString(nameIndex);
+                    String type = cursor.getString(typeIndex);
+                    String gender = cursor.getString(genderIndex);
+                    String breed = cursor.getString(breedIndex);
+                    String color = cursor.getString(colorIndex);
+                    String birthday = cursor.getString(birthdayIndex);
+                    String otherDetails = cursor.getString(otherDetailsIndex);
+
+                    Pet pet = new Pet(id, type, name, birthday, gender, breed, color, otherDetails, ownerId);
+                    pets.add(pet);
+                }
+            } while (cursor.moveToNext());
+
+        }
+        cursor.close();
+        db.close();
+
+        return pets;
+    }
 }
