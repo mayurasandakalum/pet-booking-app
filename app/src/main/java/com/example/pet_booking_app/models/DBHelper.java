@@ -59,7 +59,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "gender TEXT," +
             "breed TEXT," +
             "color TEXT," +
-            "other_details TEXT" +
+            "other_details TEXT," +
+            "is_booked TEXT" +
             ")";
 
     public static final String caregiverServicesTableCreate = "CREATE TABLE " + caregiverServicesTable + "(" +
@@ -151,15 +152,16 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("breed", pet.getBreed());
         contentValues.put("color", pet.getColor());
         contentValues.put("other_details", pet.getOtherDetails());
+        contentValues.put("is_booked", "No");
 
-        Log.d("dbpet", pet.getType() +
-                pet.getOwnerId() +
-                pet.getName() +
-                pet.getBirthday() +
-                pet.getGender() +
-                pet.getBreed() +
-                pet.getColor() +
-                pet.getOtherDetails());
+//        Log.d("dbpet", pet.getType() +
+//                pet.getOwnerId() +
+//                pet.getName() +
+//                pet.getBirthday() +
+//                pet.getGender() +
+//                pet.getBreed() +
+//                pet.getColor() +
+//                pet.getOtherDetails());
 
         long result = db.insert(petTable, null, contentValues);
 
@@ -237,6 +239,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 int colorIndex = cursor.getColumnIndex("color");
                 int birthdayIndex = cursor.getColumnIndex("birthday");
                 int otherDetailsIndex = cursor.getColumnIndex("other_details");
+                int isBookedIndex = cursor.getColumnIndex("is_booked");
 
                 if (idIndex >= 0 &&
                         ownerIdIndex >= 0 &&
@@ -246,7 +249,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         breedIndex >= 0 &&
                         colorIndex >= 0 &&
                         birthdayIndex >= 0 &&
-                        otherDetailsIndex >= 0) {
+                        otherDetailsIndex >= 0 &&
+                        isBookedIndex >= 0 ) {
                     int id = cursor.getInt(idIndex);
                     int ownerIdDb = cursor.getInt(ownerIdIndex);
                     String name = cursor.getString(nameIndex);
@@ -256,8 +260,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     String color = cursor.getString(colorIndex);
                     String birthday = cursor.getString(birthdayIndex);
                     String otherDetails = cursor.getString(otherDetailsIndex);
+                    String isBooked = cursor.getString(isBookedIndex);
 
-                    Pet pet = new Pet(id, type, name, birthday, gender, breed, color, otherDetails, ownerId);
+
+                    Pet pet = new Pet(id, type, name, birthday, gender, breed, color, otherDetails, ownerIdDb, isBooked);
 
                     pets.add(pet);
                 }
@@ -292,6 +298,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 int colorIndex = cursor.getColumnIndex("color");
                 int birthdayIndex = cursor.getColumnIndex("birthday");
                 int otherDetailsIndex = cursor.getColumnIndex("other_details");
+                int isBookedIndex = cursor.getColumnIndex("is_booked");
 
                 if (idIndex >= 0 &&
                         ownerIdIndex >= 0 &&
@@ -301,7 +308,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         breedIndex >= 0 &&
                         colorIndex >= 0 &&
                         birthdayIndex >= 0 &&
-                        otherDetailsIndex >= 0) {
+                        otherDetailsIndex >= 0 &&
+                        isBookedIndex >= 0 ) {
                     int id = cursor.getInt(idIndex);
                     int ownerId = cursor.getInt(ownerIdIndex);
                     String name = cursor.getString(nameIndex);
@@ -311,8 +319,9 @@ public class DBHelper extends SQLiteOpenHelper {
                     String color = cursor.getString(colorIndex);
                     String birthday = cursor.getString(birthdayIndex);
                     String otherDetails = cursor.getString(otherDetailsIndex);
+                    String isBooked = cursor.getString(isBookedIndex);
 
-                    Pet pet = new Pet(id, type, name, birthday, gender, breed, color, otherDetails, ownerId);
+                    Pet pet = new Pet(id, type, name, birthday, gender, breed, color, otherDetails, ownerId, isBooked);
                     pets.add(pet);
                 }
             } while (cursor.moveToNext());
@@ -322,5 +331,15 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
 
         return pets;
+    }
+
+    public boolean updatePetIsBooked(int petId, String isBooked) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("is_booked", isBooked);
+
+        int rowsUpdated = db.update(petTable, contentValues, "id = ?", new String[]{String.valueOf(petId)});
+
+        return rowsUpdated > 0;
     }
 }

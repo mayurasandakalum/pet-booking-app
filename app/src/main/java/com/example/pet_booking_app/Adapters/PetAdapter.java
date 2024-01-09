@@ -78,6 +78,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
                     Pet pet = filteredPets.get(position);
 
                     Intent intent = new Intent(v.getContext(), PetDetailsView.class);
+                    intent.putExtra("id", pet.getId());
                     intent.putExtra("name", pet.getName());
                     intent.putExtra("birthday", pet.getBirthday());
                     intent.putExtra("gender", pet.getGender());

@@ -5,7 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.pet_booking_app.models.DBHelper;
 
 public class PetDetailsView extends AppCompatActivity {
 
@@ -15,6 +20,7 @@ public class PetDetailsView extends AppCompatActivity {
         setContentView(R.layout.activity_pet_details_view);
 
         Intent intent = getIntent();
+        int id = intent.getIntExtra("id", 1);
         String name = intent.getStringExtra("name");
         String birthday = intent.getStringExtra("birthday");
         String gender = intent.getStringExtra("gender");
@@ -28,6 +34,23 @@ public class PetDetailsView extends AppCompatActivity {
         TextView breedTextView = findViewById(R.id.breedTextView);
         TextView colorTextView = findViewById(R.id.colorTextView);
         TextView otherDetailsTextView = findViewById(R.id.otherDetailsTextView);
+
+        Button requestBookBtn = findViewById(R.id.btn_toggle_book);
+
+        requestBookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Assuming you have a PetDatabaseHelper instance db
+                DBHelper db = new DBHelper(PetDetailsView.this);
+                boolean success = db.updatePetIsBooked(id, "Yes");
+                Log.d("updatedb", "onClick: " + success);
+                if (success) {
+                    Toast.makeText(PetDetailsView.this, "Pet booking status updated", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(PetDetailsView.this, "Failed to update pet booking status", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         nameTextView.setText(name);
         birthdayTextView.setText(birthday);
