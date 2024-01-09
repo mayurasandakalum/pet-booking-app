@@ -22,10 +22,10 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 
     private int[] dogImages = {R.drawable.dog1, R.drawable.dog2, R.drawable.dog3, R.drawable.dog4};
     private int[] catImages = {R.drawable.cat1, R.drawable.cat4};
-    private List<Pet> pets;
+    private List<Pet> filteredPets;
 
-    public PetAdapter(List<Pet> pets) {
-        this.pets = pets;
+    public PetAdapter(List<Pet> filteredPets) {
+        this.filteredPets = filteredPets;
     }
 
     @NotNull
@@ -37,7 +37,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 
     @Override
     public void onBindViewHolder(@NotNull PetViewHolder holder, int position) {
-        Pet pet = pets.get(position);
+        Pet pet = filteredPets.get(position);
         holder.petName.setText(pet.getName());
 
         int imageResource;
@@ -57,7 +57,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 
     @Override
     public int getItemCount() {
-        return pets.size();
+        return filteredPets.size();
     }
 
     public static class PetViewHolder extends RecyclerView.ViewHolder {
