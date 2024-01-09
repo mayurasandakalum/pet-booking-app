@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -35,6 +36,7 @@ public class CaregiverBookings extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityCaregiverBookingsBinding binding;
+
 
     RecyclerView petsRecyclerView;
     BookingsAdapter bookingAdapter;
@@ -68,6 +70,15 @@ public class CaregiverBookings extends AppCompatActivity {
         bookingAdapter = new BookingsAdapter(bookings);
         petsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         petsRecyclerView.setAdapter(bookingAdapter);
+
+        Button backBtn = findViewById(R.id.back_btn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CaregiverBookings.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
     @Override
