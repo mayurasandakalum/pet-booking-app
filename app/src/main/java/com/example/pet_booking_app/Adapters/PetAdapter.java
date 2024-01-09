@@ -1,6 +1,7 @@
 package com.example.pet_booking_app.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pet_booking_app.PetDetailsView;
 import com.example.pet_booking_app.R;
 import com.example.pet_booking_app.models.Pet;
 
@@ -22,7 +24,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 
     private int[] dogImages = {R.drawable.dog1, R.drawable.dog2, R.drawable.dog3, R.drawable.dog4};
     private int[] catImages = {R.drawable.cat1, R.drawable.cat4};
-    private List<Pet> filteredPets;
+    private static List<Pet> filteredPets;
 
     public PetAdapter(List<Pet> filteredPets) {
         this.filteredPets = filteredPets;
@@ -68,6 +70,23 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
             super(itemView);
             petImage = itemView.findViewById(R.id.petImage);
             petName = itemView.findViewById(R.id.petName);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    Pet pet = filteredPets.get(position);
+
+                    Intent intent = new Intent(v.getContext(), PetDetailsView.class);
+                    intent.putExtra("name", pet.getName());
+                    intent.putExtra("birthday", pet.getBirthday());
+                    intent.putExtra("gender", pet.getGender());
+                    intent.putExtra("breed", pet.getBreed());
+                    intent.putExtra("color", pet.getColor());
+                    intent.putExtra("otherDetails", pet.getOtherDetails());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }
