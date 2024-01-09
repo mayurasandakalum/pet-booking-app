@@ -51,12 +51,6 @@ public class HomeActivity extends AppCompatActivity {
 
         pets = new ArrayList<Pet>();
 
-//        pets.add(new Pet("Dog", "Buddy", "2015-06-08", "Male", "Golden Retriever", "Golden", "Friendly and active", 1));
-//        pets.add(new Pet("Cat", "Whiskers", "2017-04-15", "Female", "Siamese", "Cream", "Quiet and independent", 2));
-//        pets.add(new Pet("Dog", "Max", "2018-01-20", "Male", "Bulldog", "White", "Loyal and protective", 3));
-//        pets.add(new Pet("Cat", "Bella", "2016-09-30", "Female", "Persian", "Grey", "Affectionate and calm", 1));
-//        pets.add(new Pet("Dog", "Charlie", "2019-12-05", "Male", "Labrador Retriever", "Black", "Outgoing and even tempered", 2));
-
         DBHelper dbHelper = new DBHelper(HomeActivity.this);
         pets = dbHelper.getAllPets();
 

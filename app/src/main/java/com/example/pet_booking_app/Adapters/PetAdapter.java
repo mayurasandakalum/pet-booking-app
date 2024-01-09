@@ -44,11 +44,11 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder> {
 
         int imageResource;
         if (pet.getType().equalsIgnoreCase("dog")) {
-            int randomIndex = new Random().nextInt(dogImages.length);
-            imageResource = dogImages[randomIndex];
+//            int randomIndex = new Random().nextInt(dogImages.length);
+            imageResource = R.drawable.dog3;
         } else if (pet.getType().equalsIgnoreCase("cat")) {
             int randomIndex = new Random().nextInt(catImages.length);
-            imageResource = catImages[randomIndex];
+            imageResource = R.drawable.cat1;
         } else {
             // Set a default image resource if the pet type is not recognized
             imageResource = R.drawable.default_pet;
