@@ -5,12 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.pet_booking_app.Database.PetBookingDB;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -54,7 +57,6 @@ public class DBHelper extends SQLiteOpenHelper {
             "type TEXT," +
             "birthday TEXT," +
             "gender TEXT," +
-            "pet_type TEXT," +
             "breed TEXT," +
             "color TEXT," +
             "other_details TEXT" +
@@ -150,6 +152,15 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("color", pet.getColor());
         contentValues.put("other_details", pet.getOtherDetails());
 
+        Log.d("dbpet", pet.getType()+
+                pet.getOwnerId()+
+                pet.getName()+
+                pet.getBirthday()+
+                pet.getGender()+
+                pet.getBreed()+
+                pet.getColor()+
+                pet.getOtherDetails());
+
         long result = db.insert(petTable, null, contentValues);
 
         // if data is inserted incorrectly it will return -1
@@ -208,6 +219,54 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // if no match found in either table
         return null;
+    }
+
+    public List<Pet> getPetsByOwnerId(int ownerId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Pet> pets = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + petTable + " WHERE owner_id=?", new String[]{String.valueOf(ownerId)});
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                int idIndex = cursor.getColumnIndex("id");
+                int ownerIdIndex = cursor.getColumnIndex("owner_id");
+                int nameIndex = cursor.getColumnIndex("name");
+                int typeIndex = cursor.getColumnIndex("type");
+                int genderIndex = cursor.getColumnIndex("gender");
+                int breedIndex = cursor.getColumnIndex("breed");
+                int colorIndex = cursor.getColumnIndex("color");
+                int birthdayIndex = cursor.getColumnIndex("birthday");
+                int otherDetailsIndex = cursor.getColumnIndex("other_details");
+                // Add more column indexes as per your table structure
+
+                if (idIndex >= 0 &&
+                        ownerIdIndex >= 0 &&
+                        nameIndex >= 0 &&
+                        typeIndex >= 0 &&
+                        genderIndex >= 0 &&
+                        breedIndex >= 0 &&
+                        colorIndex >= 0 &&
+                        birthdayIndex >= 0 &&
+                        otherDetailsIndex >= 0) {
+                    int id = cursor.getInt(idIndex);
+                    int ownerIdDb = cursor.getInt(ownerIdIndex);
+                    String name = cursor.getString(nameIndex);
+                    String type = cursor.getString(typeIndex);
+                    String gender = cursor.getString(genderIndex);
+                    String breed = cursor.getString(breedIndex);
+                    String color = cursor.getString(colorIndex);
+                    String birthday = cursor.getString(birthdayIndex);
+                    String otherDetails = cursor.getString(otherDetailsIndex);
+
+                    Pet pet = new Pet(id, type, name, birthday, gender, breed, color, otherDetails, ownerId);
+
+                    pets.add(pet);
+                }
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return pets;
     }
 
 //    public Boolean insertData(Users users) {

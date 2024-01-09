@@ -105,7 +105,9 @@ public class PetRegister extends AppCompatActivity implements DatePickerDialog.O
                 SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                 int ownerId = prefs.getInt("userId", -1);
 
-                Pet pet = new Pet(name, type, gender, date, breed, color, otherDetails, ownerId);
+                Pet pet = new Pet(type, name, date, gender, breed, color, otherDetails, ownerId);
+
+
 
                 Log.d("PetRegister", "Pet Details: " + "Name: " + name + ", Type: " + type + ", Gender: " + gender + ", Date: " + date + ", Breed: " + breed + ", Color: " + color + ", Other Details: " + otherDetails + ", Owner ID: " + ownerId);
 
